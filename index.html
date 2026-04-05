@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Метражи | Центр недвижимости в Калуге — Забирай метры счастливой жизни</title>
+    <meta name="description" content="Агентство недвижимости Метражи в Калуге. Покупка, продажа, аренда, ипотека и работа с материнским капиталом. 11 лет опыта.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Onest:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #22D3EE;
+            --accent-dark: #0891B2;
+            --secondary: #F8FAFC;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Onest', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Golos Text', sans-serif;
+        }
+
+        .btn-primary { background-color: var(--accent); color: var(--primary); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(34, 211, 238, 0.3); background-color: var(--white); }
+        .btn-outline { border: 2px solid var(--accent); color: var(--accent); background: transparent; }
+        .btn-outline:hover { background: var(--accent); color: var(--primary); }
+
+        nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 1.5rem 0; transition: var(--transition); }
+        nav.scrolled { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); padding: 1rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+
+        .hero { height: 100vh; min-height: 700px; display: flex; align-items: center; position: relative; background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover; color: var(--white); }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1.5rem; }
+
+        .stats { margin-top: -80px; position: relative; z-index: 10; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .stat-card { background: var(--white); padding: 2.5rem; border-radius: 2rem; text-align: center; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.05); transition: var(--transition); }
+        .stat-number { display: block; font-size: 3rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 50px; }
+        .service-card { padding: 3rem; background: var(--secondary); border-radius: 2rem; transition: var(--transition); }
+        .service-card:hover { background: var(--white); border: 1px solid var(--accent); box-shadow: var(--shadow); }
+        .service-icon { width: 60px; height: 60px; background: var(--white); border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: var(--accent); margin-bottom: 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .mobile-cta { display: none; position: fixed; bottom: 20px; left: 20px; right: 20px; z-index: 1000; box-shadow: 0 10px 30px rgba(34, 211, 238, 0.4); }
+
+        @media (max-width: 768px) {
+            .mobile-cta { display: flex; }
+            .nav-links { display: none; }
+            .hero { text-align: center; }
+            .hero-btns { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo"><i data-lucide="home" style="color: var(--accent);"></i> МЕТРАЖИ</a>
+            <div class="nav-links">
+                <a href="#services">Услуги</a>
+                <a href="#about">О нас</a>
+                <a href="#stats">Преимущества</a>
+                <a href="#contacts">Контакты</a>
+                <a href="tel:+79208705570" class="btn btn-primary">+7 920 870-55-70</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div style="max-width: 800px;">
+                <p style="text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 600; margin-bottom: 1rem;">Центр недвижимости в Калуге</p>
+                <h1>Забирай метры счастливой жизни!</h1>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #CBD5E1;">Профессиональная помощь в покупке и продаже недвижимости с 2013 года. Работаем с маткапиталом, ипотекой и сложными сделками.</p>
+                <div style="display: flex; gap: 1.5rem;">
+                    <a href="#contacts" class="btn btn-primary">Бесплатная консультация</a>
+                    <a href="#services" class="btn btn-outline" style="color: white; border-color: white;">Наши услуги</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="stats" class="stats">
+        <div class="container stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">11</span>
+                <span class="stat-text">Лет успешной работы</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">2013</span>
+                <span class="stat-text">Год основания</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">100%</span>
+                <span class="stat-text">Юридическая чистота</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-padding reveal">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto; mb: 3rem;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Наши услуги</h2>
+                <p style="color: var(--text-light);">Комплексный подход к каждой сделке — от подбора объекта до получения ключей.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="building"></i></div>
+                    <h3>Вторичное жилье</h3>
+                    <p>Продажа и покупка квартир в любом районе Калуги. Полная проверка документов.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="key"></i></div>
+                    <h3>Новостройки</h3>
+                    <p>Квартиры от надежных застройщиков без комиссии. Помощь в приемке.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="baby"></i></div>
+                    <h3>Маткапитал и субсидии</h3>
+                    <p>Законное использование сертификатов и материнский капитал для покупки жилья.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="landmark"></i></div>
+                    <h3>Ипотека</h3>
+                    <p>Помощь в одобрении ипотеки даже в сложных случаях. Партнерство с крупнейшими банками.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="map"></i></div>
+                    <h3>Загородная недвижимость</h3>
+                    <p>Дома, дачи и участки в Калуге и области. Проверка границ и коммуникаций.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="shield-check"></i></div>
+                    <h3>Юридическое сопровождение</h3>
+                    <p>Составление договоров, проверка обременений и безопасные расчеты.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding reveal" style="background: var(--secondary);">
+        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; align-items: center;">
+            <div style="position: relative;">
+                <img src="https://images.unsplash.com/photo-1554435493-93422e8220c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Команда" style="width: 100%; border-radius: 2rem; box-shadow: var(--shadow);">
+                <div style="position: absolute; bottom: -20px; right: -20px; background: var(--accent); padding: 2rem; border-radius: 1.5rem; color: var(--primary); font-weight: 700;">
+                    <div>Суперагент</div>
+                    <div style="font-size: 0.8rem; opacity: 0.8;">на Циан и Домклик</div>
+                </div>
+            </div>
+            <div>
+                <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Ваш надежный партнер</h2>
+                <p style="margin-bottom: 2rem; color: var(--text-light);">Мы работаем на рынке Калуги с 2013 года и за это время заслужили доверие сотен семей. Наша цель — сделать процесс покупки недвижимости прозрачным и безопасным.</p>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: flex; gap: 1rem; align-items: center;"><i data-lucide="check" style="color: var(--accent);"></i> Работаем без предоплаты</div>
+                    <div style="display: flex; gap: 1rem; align-items: center;"><i data-lucide="check" style="color: var(--accent);"></i> Полная материальная ответственность</div>
+                    <div style="display: flex; gap: 1rem; align-items: center;"><i data-lucide="check" style="color: var(--accent);"></i> Знание всех нюансов местного рынка</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacts" class="section-padding reveal" style="background: var(--primary); color: white;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px;">
+                <div>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Контакты</h2>
+                    <div style="display: flex; flex-direction: column; gap: 2rem;">
+                        <div>
+                            <div style="font-weight: 600; color: var(--accent);">Адрес:</div>
+                            <div>г. Калуга, ул. Кирова, д. 20, этаж 3</div>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--accent);">Телефоны:</div>
+                            <a href="tel:+79208705570" style="display: block; font-size: 1.2rem;">+7 920 870-55-70</a>
+                            <a href="tel:+79807132366" style="display: block; font-size: 1.2rem;">+7 980 713 23 66</a>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--accent);">Соцсети:</div>
+                            <a href="https://vk.com/metrazhi40" target="_blank">ВКонтакте @metrazhi40</a>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: var(--white); padding: 3rem; border-radius: 2rem; color: var(--primary);">
+                    <h3 style="margin-bottom: 1.5rem;">Оставить заявку</h3>
+                    <form id="contactForm" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <input type="text" placeholder="Имя" required style="width: 100%; padding: 1rem; border-radius: 0.5rem; border: 1px solid #ddd;">
+                        <input type="tel" placeholder="Телефон" required style="width: 100%; padding: 1rem; border-radius: 0.5rem; border: 1px solid #ddd;">
+                        <textarea placeholder="Ваш вопрос" rows="4" style="width: 100%; padding: 1rem; border-radius: 0.5rem; border: 1px solid #ddd;"></textarea>
+                        <button type="submit" class="btn btn-primary" style="justify-content: center;">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #0B1222; padding: 40px 0; color: #64748B; text-align: center;">
+        <div class="container">
+            <p>© 2013-2024 Центр недвижимости «Метражи». г. Калуга</p>
+        </div>
+    </footer>
+
+    <div class="mobile-cta">
+        <a href="tel:+79208705570" class="btn btn-primary" style="width: 100%; justify-content: center;"><i data-lucide="phone"></i> &nbsp; Позвонить</a>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Спасибо! Мы перезвоним вам в ближайшее время.');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
